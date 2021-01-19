@@ -3,26 +3,23 @@ import './App.css';
 
 
 function App() {
-  const [level, setLevel] = useState('beginner');
+  const [checked, setChecked] = useState(false);
 
+  function toggle() {
+    setChecked((checked) => !checked);
+  }
+  
   useEffect( () => {
-    console.log(`Expertise level is ${level}...`); 
-  }, [level]); // tracks the dependency of this variable and only logs when value changes
+    console.log(`Value of checkbox is ${checked}`)
+  }, [checked]);
 
   return (
     <>
-      <h1>Current expertise level is {level} :) </h1>
-      <button onClick= {() => setLevel('beginner')}>
-      Begin
-      </button>
-      <button onClick= {() => setLevel('intermediate')}>
-      Intermediate
-      </button>
-      <button onClick= {() => setLevel('expert')}>
-      Expert
-      </button>
-    
-    
+      <input type="checkbox" 
+      value ={checked} 
+      onChange = {toggle} 
+      />
+      <p>{checked ? "checked" : 'not checked'}</p>
     </>
   );
 }
